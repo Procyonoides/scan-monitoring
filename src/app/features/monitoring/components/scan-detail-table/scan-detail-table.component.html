@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="header-row">
+    <h2>Detail Scan Hari Ini</h2>
+    <input
+      type="text"
+      class="search"
+      placeholder="Cari barcode, brand, model, username..."
+      [(ngModel)]="search"
+      (ngModelChange)="onSearchInput()"
+    />
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Waktu</th>
+        <th>Barcode</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Warna</th>
+        <th>Size</th>
+        <th class="num">Qty</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row.scan_no) {
+        <tr>
+          <td>{{ row.date_time }}</td>
+          <td>{{ row.original_barcode }}</td>
+          <td>{{ row.brand }}</td>
+          <td>{{ row.model }}</td>
+          <td>{{ row.color }}</td>
+          <td>{{ row.size }}</td>
+          <td class="num">{{ row.quantity }}</td>
+          <td>{{ row.username }}</td>
+        </tr>
+      }
+      @if (!loading && rows.length === 0) {
+        <tr><td colspan="8" class="empty">Tidak ada data.</td></tr>
+      }
+    </tbody>
+  </table>
+
+  @if (pagination && pagination.totalPages > 1) {
+    <div class="pager">
+      <button (click)="goToPage(pagination.page - 1)" [disabled]="pagination.page <= 1">&larr;</button>
+      <span>Hal {{ pagination.page }} / {{ pagination.totalPages }} ({{ pagination.total }} data)</span>
+      <button (click)="goToPage(pagination.page + 1)" [disabled]="pagination.page >= pagination.totalPages">&rarr;</button>
+    </div>
+  }
+</div>

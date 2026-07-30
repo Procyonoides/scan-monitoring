@@ -1,0 +1,26 @@
+<div class="page">
+  <header>
+    <div class="title">
+      <a routerLink="/" class="back">&larr;</a>
+      <h1>{{ department }}</h1>
+    </div>
+    <div class="status" [class.online]="connected">
+      <span class="dot"></span>
+      {{ connected ? 'Live' : 'Menghubungkan...' }}
+    </div>
+  </header>
+
+  <section class="summary">
+    <app-shift-summary-table [rows]="summaryRows" [loading]="summaryLoading" />
+  </section>
+
+  <section class="detail">
+    <app-scan-detail-table
+      [rows]="detailRows"
+      [pagination]="detailPagination"
+      [loading]="detailLoading"
+      (searchChange)="onSearchChange($event)"
+      (pageChange)="onPageChange($event)"
+    />
+  </section>
+</div>

@@ -1,0 +1,8 @@
+<div class="wrap">
+  <h1>Production Monitoring</h1>
+  <p>Masukkan nama departemen untuk membuka layar monitoring.</p>
+  <form (ngSubmit)="go()">
+    <input type="text" [(ngModel)]="department" name="department" placeholder="mis. PACKING" autofocus />
+    <button type="submit" [disabled]="!department.trim()">Buka</button>
+  </form>
+</div>

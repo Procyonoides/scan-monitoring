@@ -1,0 +1,26 @@
+<div class="card">
+  <h2>Ringkasan Shift</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Mulai</th>
+        <th>Terakhir</th>
+        <th class="num">Total Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row.username) {
+        <tr>
+          <td>{{ row.username }}</td>
+          <td>{{ row.datetime_start }}</td>
+          <td>{{ row.datetime_end }}</td>
+          <td class="num">{{ row.total_quantity }}</td>
+        </tr>
+      }
+      @if (!loading && rows.length === 0) {
+        <tr><td colspan="4" class="empty">Belum ada aktivitas scan hari ini.</td></tr>
+      }
+    </tbody>
+  </table>
+</div>
