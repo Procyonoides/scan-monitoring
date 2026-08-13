@@ -5,7 +5,6 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ScanDetailRow, Pagination } from '../../../../core/models/production-monitoring.model';
 
-
 @Component({
   selector: 'app-scan-detail-table',
   standalone: true,
@@ -14,12 +13,16 @@ import { ScanDetailRow, Pagination } from '../../../../core/models/production-mo
   styleUrl: './scan-detail-table.component.scss'
 })
 export class ScanDetailTableComponent implements OnDestroy {
-   @Input() rows: ScanDetailRow[] = [];
+  @Input() rows: ScanDetailRow[] = [];
   @Input() pagination?: Pagination;
   @Input() loading = false;
+  @Input() limit = 10;
 
   @Output() searchChange = new EventEmitter<string>();
   @Output() pageChange = new EventEmitter<number>();
+  @Output() limitChange = new EventEmitter<number>();
+
+  readonly limitOptions = [10, 25, 50, 100];
 
   search = '';
 
@@ -36,6 +39,10 @@ export class ScanDetailTableComponent implements OnDestroy {
     this.search$.next(this.search.trim());
   }
 
+  onLimitChange(value: string): void {
+    this.limitChange.emit(Number(value));
+  }
+
   goToPage(page: number): void {
     if (!this.pagination) return;
     if (page < 1 || page > this.pagination.totalPages) return;
@@ -45,5 +52,4 @@ export class ScanDetailTableComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
 }

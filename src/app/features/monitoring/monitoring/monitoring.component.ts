@@ -6,10 +6,9 @@ import { debounceTime } from 'rxjs/operators';
 
 import { ProductionMonitoringService } from '../../../core/services/production-monitoring.service';
 import { SocketService } from '../../../core/services/socket.service';
-import { ShiftSummaryRow, ScanDetailRow, Pagination } from '../../../core/models/production-monitoring.model';
+import { ShiftCards, ScanDetailRow, Pagination, DashboardUpdateEvent } from '../../../core/models/production-monitoring.model';
 import { ShiftSummaryTableComponent } from '../components/shift-summary-table/shift-summary-table.component';
 import { ScanDetailTableComponent } from '../components/scan-detail-table/scan-detail-table.component';
-
 
 @Component({
   selector: 'app-monitoring',
@@ -22,16 +21,18 @@ export class MonitoringComponent implements OnInit, OnDestroy {
   department = '';
   connected = false;
 
-  summaryRows: ShiftSummaryRow[] = [];
+  summaryCards: ShiftCards | null = null;
   summaryLoading = true;
 
   detailRows: ScanDetailRow[] = [];
   detailPagination?: Pagination;
   detailLoading = true;
 
+  currentLimit = 10;
   private currentSearch = '';
   private currentPage = 1;
 
+  // Batches rapid 'dashboard:update' bursts (e.g. batch scan) into one refetch.
   private refetch$ = new Subject<void>();
   private subs: Subscription[] = [];
 
@@ -52,7 +53,7 @@ export class MonitoringComponent implements OnInit, OnDestroy {
       this.socketService.status$.subscribe(status => (this.connected = status))
     );
     this.subs.push(
-      this.socketService.on('dashboard:update').subscribe(() => {
+      this.socketService.on<DashboardUpdateEvent>('dashboard:update').subscribe(() => {
         this.refetch$.next();
       })
     );
@@ -79,10 +80,19 @@ export class MonitoringComponent implements OnInit, OnDestroy {
     this.loadDetails();
   }
 
+  onLimitChange(limit: number): void {
+    this.currentLimit = limit;
+    this.currentPage = 1;
+    this.loadDetails();
+  }
+
   private loadSummary(): void {
     this.summaryLoading = true;
     this.monitoringService.getSummary(this.department).subscribe({
-      next: rows => { this.summaryRows = rows; this.summaryLoading = false; },
+      next: cards => {
+        this.summaryCards = cards;
+        this.summaryLoading = false;
+      },
       error: () => (this.summaryLoading = false)
     });
   }
@@ -90,7 +100,7 @@ export class MonitoringComponent implements OnInit, OnDestroy {
   private loadDetails(): void {
     this.detailLoading = true;
     this.monitoringService
-      .getDetails(this.department, { search: this.currentSearch, page: this.currentPage, limit: 50 })
+      .getDetails(this.department, { search: this.currentSearch, page: this.currentPage, limit: this.currentLimit })
       .subscribe({
         next: ({ rows, pagination }) => {
           this.detailRows = rows;
@@ -100,5 +110,4 @@ export class MonitoringComponent implements OnInit, OnDestroy {
         error: () => (this.detailLoading = false)
       });
   }
-
 }

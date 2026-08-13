@@ -10,6 +10,16 @@
     />
   </div>
 
+  <div class="length-row">
+    <span>Show</span>
+    <select [ngModel]="limit" (ngModelChange)="onLimitChange($event)">
+      @for (opt of limitOptions; track opt) {
+        <option [value]="opt">{{ opt }}</option>
+      }
+    </select>
+    <span>entries</span>
+  </div>
+
   <table>
     <thead>
       <tr>

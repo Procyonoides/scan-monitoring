@@ -11,7 +11,7 @@
   </header>
 
   <section class="summary">
-    <app-shift-summary-table [rows]="summaryRows" [loading]="summaryLoading" />
+    <app-shift-summary-table [department]="department" [cards]="summaryCards" [loading]="summaryLoading" />
   </section>
 
   <section class="detail">
@@ -19,8 +19,10 @@
       [rows]="detailRows"
       [pagination]="detailPagination"
       [loading]="detailLoading"
+      [limit]="currentLimit"
       (searchChange)="onSearchChange($event)"
       (pageChange)="onPageChange($event)"
+      (limitChange)="onLimitChange($event)"
     />
   </section>
 </div>

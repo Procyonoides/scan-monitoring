@@ -1,17 +1,38 @@
+.shift-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
 .card {
-  background: #131a22;
-  border: 1px solid #2a3540;
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 1.5rem;
 }
-h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  color: #9fb0c0;
-  text-transform: uppercase;
+.card-red { background: #d9534f; }
+.card-orange { background: #f0983c; }
+.card-blue { background: #337ab7; }
+.total { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; }
+.shift-name { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.username { font-size: 1rem; opacity: 0.9; }
+.dept { font-size: 1.1rem; opacity: 0.9; margin-top: 0.75rem; letter-spacing: 0.03em; }
+
+.print-btn {
+  margin-top: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
 }
-table { width: 100%; border-collapse: collapse; }
-th { text-align: left; font-size: 0.8rem; color: #6d7d8c; padding: 0.4rem 0.6rem; border-bottom: 1px solid #2a3540; }
-td { padding: 0.5rem 0.6rem; border-bottom: 1px solid #1c252d; }
-.num { text-align: right; }
-.empty { text-align: center; color: #5b6b7a; padding: 1.5rem; }
+
+.print-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}

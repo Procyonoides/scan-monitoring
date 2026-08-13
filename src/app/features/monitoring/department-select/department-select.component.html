@@ -1,8 +1,13 @@
 <div class="wrap">
   <h1>Production Monitoring</h1>
-  <p>Masukkan nama departemen untuk membuka layar monitoring.</p>
-  <form (ngSubmit)="go()">
-    <input type="text" [(ngModel)]="department" name="department" placeholder="mis. PACKING" autofocus />
-    <button type="submit" [disabled]="!department.trim()">Buka</button>
-  </form>
+  <p>Pilih departemen untuk membuka layar monitoring.</p>
+  <div class="rows">
+    @for (row of departmentRows; track row) {
+      <div class="row">
+        @for (dept of row; track dept) {
+          <button (click)="open(dept)">{{ dept }}</button>
+        }
+      </div>
+    }
+  </div>
 </div>

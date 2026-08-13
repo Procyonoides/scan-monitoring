@@ -1,26 +1,13 @@
-<div class="card">
-  <h2>Ringkasan Shift</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Mulai</th>
-        <th>Terakhir</th>
-        <th class="num">Total Qty</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (row of rows; track row.username) {
-        <tr>
-          <td>{{ row.username }}</td>
-          <td>{{ row.datetime_start }}</td>
-          <td>{{ row.datetime_end }}</td>
-          <td class="num">{{ row.total_quantity }}</td>
-        </tr>
+<div class="shift-cards">
+  @for (shift of shiftOrder; track shift) {
+    <div class="card card-{{ cards?.[shift]?.color || 'orange' }}">
+      <div class="total">{{ cards?.[shift]?.total ?? 0 }}</div>
+      <div class="shift-name">{{ shift }}</div>
+      <div class="username">{{ cards?.[shift]?.username || '-' }}</div>
+      <div class="dept">{{ department }} DEPARTMENT</div>
+      @if (cards?.[shift]?.username) {
+        <button class="print-btn" (click)="printShift(shift)">Print Shift {{ shift }}</button>
       }
-      @if (!loading && rows.length === 0) {
-        <tr><td colspan="4" class="empty">Belum ada aktivitas scan hari ini.</td></tr>
-      }
-    </tbody>
-  </table>
+    </div>
+  }
 </div>

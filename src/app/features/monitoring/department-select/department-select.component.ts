@@ -1,20 +1,24 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-department-select',
   standalone: true,
-  imports: [FormsModule],
+  imports: [],
   templateUrl: './department-select.component.html',
   styleUrl: './department-select.component.scss'
 })
 export class DepartmentSelectComponent {
-  department = '';
-  constructor(private router: Router) {}
-  go(): void {
-    const dep = this.department.trim().toUpperCase();
-    if (dep) this.router.navigate(['/', dep]);
-  }
+  // Grouped by row so the layout can be 2-1-2 instead of an auto-wrapping grid.
+  readonly departmentRows: string[][] = [
+    ['RUBBER', 'GOODSOLE'],
+    ['IP'],
+    ['PHYLON', 'BLOKER']
+  ];
 
+  constructor(private router: Router) {}
+
+  open(department: string): void {
+    this.router.navigate(['/', department]);
+  }
 }

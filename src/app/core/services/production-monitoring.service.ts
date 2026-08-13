@@ -3,7 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { ShiftSummaryRow, ScanDetailRow, Pagination } from '../models/production-monitoring.model';
+import { ShiftCards, ScanDetailRow, Pagination } from '../models/production-monitoring.model';
+
 
 interface ApiResult<T> {
   success: boolean;
@@ -17,9 +18,9 @@ export class ProductionMonitoringService {
 
   constructor(private http: HttpClient) {}
 
-  getSummary(department: string): Observable<ShiftSummaryRow[]> {
+  getSummary(department: string): Observable<ShiftCards> {
     return this.http
-      .get<ApiResult<ShiftSummaryRow[]>>(`${this.base}/${encodeURIComponent(department)}/summary`)
+      .get<ApiResult<ShiftCards>>(`${this.base}/${encodeURIComponent(department)}/summary`)
       .pipe(map(res => res.data));
   }
 
