@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { ShiftCards } from '../../../../core/models/production-monitoring.model';
 import { environment } from '../../../../../environments/environment';
@@ -7,6 +7,7 @@ import { environment } from '../../../../../environments/environment';
     selector: 'app-shift-summary-table',
     imports: [],
     templateUrl: './shift-summary-table.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './shift-summary-table.component.scss'
 })
 export class ShiftSummaryTableComponent {

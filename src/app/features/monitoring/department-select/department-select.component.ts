@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-department-select',
     imports: [],
     templateUrl: './department-select.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './department-select.component.scss'
 })
 export class DepartmentSelectComponent {

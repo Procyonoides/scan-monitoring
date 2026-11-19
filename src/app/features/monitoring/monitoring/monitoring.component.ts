@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
@@ -14,6 +14,7 @@ import { ScanDetailTableComponent } from '../components/scan-detail-table/scan-d
     selector: 'app-monitoring',
     imports: [RouterLink, ShiftSummaryTableComponent, ScanDetailTableComponent],
     templateUrl: './monitoring.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './monitoring.component.scss'
 })
 export class MonitoringComponent implements OnInit, OnDestroy {

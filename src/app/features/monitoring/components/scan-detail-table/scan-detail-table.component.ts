@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { ScanDetailRow, Pagination } from '../../../../core/models/production-mo
     selector: 'app-scan-detail-table',
     imports: [FormsModule],
     templateUrl: './scan-detail-table.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './scan-detail-table.component.scss'
 })
 export class ScanDetailTableComponent implements OnDestroy {
