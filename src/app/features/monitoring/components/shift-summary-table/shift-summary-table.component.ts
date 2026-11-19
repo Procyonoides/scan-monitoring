@@ -4,11 +4,10 @@ import { ShiftCards } from '../../../../core/models/production-monitoring.model'
 import { environment } from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-shift-summary-table',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './shift-summary-table.component.html',
-  styleUrl: './shift-summary-table.component.scss'
+    selector: 'app-shift-summary-table',
+    imports: [CommonModule],
+    templateUrl: './shift-summary-table.component.html',
+    styleUrl: './shift-summary-table.component.scss'
 })
 export class ShiftSummaryTableComponent {
   @Input() department = '';

@@ -6,11 +6,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ScanDetailRow, Pagination } from '../../../../core/models/production-monitoring.model';
 
 @Component({
-  selector: 'app-scan-detail-table',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './scan-detail-table.component.html',
-  styleUrl: './scan-detail-table.component.scss'
+    selector: 'app-scan-detail-table',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './scan-detail-table.component.html',
+    styleUrl: './scan-detail-table.component.scss'
 })
 export class ScanDetailTableComponent implements OnDestroy {
   @Input() rows: ScanDetailRow[] = [];

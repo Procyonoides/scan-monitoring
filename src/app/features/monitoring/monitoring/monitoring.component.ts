@@ -11,11 +11,10 @@ import { ShiftSummaryTableComponent } from '../components/shift-summary-table/sh
 import { ScanDetailTableComponent } from '../components/scan-detail-table/scan-detail-table.component';
 
 @Component({
-  selector: 'app-monitoring',
-  standalone: true,
-  imports: [CommonModule, RouterLink, ShiftSummaryTableComponent, ScanDetailTableComponent],
-  templateUrl: './monitoring.component.html',
-  styleUrl: './monitoring.component.scss'
+    selector: 'app-monitoring',
+    imports: [CommonModule, RouterLink, ShiftSummaryTableComponent, ScanDetailTableComponent],
+    templateUrl: './monitoring.component.html',
+    styleUrl: './monitoring.component.scss'
 })
 export class MonitoringComponent implements OnInit, OnDestroy {
   department = '';
