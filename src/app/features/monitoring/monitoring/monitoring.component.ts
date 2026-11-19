@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { ScanDetailTableComponent } from '../components/scan-detail-table/scan-d
 
 @Component({
     selector: 'app-monitoring',
-    imports: [CommonModule, RouterLink, ShiftSummaryTableComponent, ScanDetailTableComponent],
+    imports: [RouterLink, ShiftSummaryTableComponent, ScanDetailTableComponent],
     templateUrl: './monitoring.component.html',
     styleUrl: './monitoring.component.scss'
 })

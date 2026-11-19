@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ShiftCards } from '../../../../core/models/production-monitoring.model';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'app-shift-summary-table',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './shift-summary-table.component.html',
     styleUrl: './shift-summary-table.component.scss'
 })

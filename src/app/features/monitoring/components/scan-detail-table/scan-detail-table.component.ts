@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { ScanDetailRow, Pagination } from '../../../../core/models/production-mo
 
 @Component({
     selector: 'app-scan-detail-table',
-    imports: [CommonModule, FormsModule],
+    imports: [FormsModule],
     templateUrl: './scan-detail-table.component.html',
     styleUrl: './scan-detail-table.component.scss'
 })
